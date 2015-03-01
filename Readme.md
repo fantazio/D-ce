@@ -17,9 +17,9 @@ doing something wrong at some places and point it to you.
 ##How do I use it?
 As it is coded in OCaml, you can use the 'ocaml' interpreter.
 
-If you want to compile it, you will need 'ocamlc' and 'make'.
-`make` will get you the **dūce** binary file
-`make check` will make and run tests
+If you want to compile it, you will need 'ocamlopt' and 'make'.
+- `make` will get you the **dūce** binary file
+- `make check` will make and run tests
 
 
 ##Goal
@@ -35,6 +35,9 @@ why some oher people could sometime join in.
 
 ##Authors
 - fantazio
+
 [fantazio on wordpress](https://corentindsz.wordpress.com)
+
 [fantazio on tumblr](corentindsz.tumblr.com)
+
 [fantazio on twitter](https://twitter.com/CorentinDsz)
