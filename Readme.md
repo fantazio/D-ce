@@ -27,6 +27,10 @@ I am doing this project in order to improve my OCaml skills, learn more about C
 and techniques used to identify potential runtime errors at an early stage.
 
 
+##Grammar
+The C99 grammar is [here](http://www.open-std.org/JTC1/SC22/WG14/www/docs/n1124.pdf)
+
+
 ##How do I contribute?
 As the goal for me is to learn things, I would prefer to do the entire project
 by myself. However, having someone participating can be instructive, this is

@@ -137,4 +137,89 @@ hexadecimal-digit:
   |[0-9a-fA-F]
   ;
 
+integer-suffix:
+  |unsigned-suffix long-suffixopt
+  |unsigned-suffix long-long-suffix
+  |long-suffix unsigned-suffixopt
+  |long-long-suffix unsigned-suffixopt
+  ;
 
+long-suffixopt:
+  |
+  |long-suffix
+  ;
+
+unsigned-suffixopt:
+  |
+  |unsigned-suffix
+  ;
+
+unsigned-suffix:
+  |"u"
+  |"U"
+  ;
+
+long-suffix:
+  |"l"
+  |"L"
+  ;
+
+long-long-suffix:
+  |"ll"
+  |"LL"
+  ;
+
+floating-constant:
+  |decimal-floating-constant
+  |hexadecimal-floating-constant
+  ;
+
+decimal-floating-constant:
+  |fractional-constant exponent-partopt floating-suffixopt
+  |digit-sequence exponent-part floating-suffixopt
+  ;
+
+exponent-partopt:
+  |
+  |exponent-part
+  ;
+
+floating-suffixopt:
+  |
+  |floating-suffix
+  ;
+
+hexadecimal-floating-constant:
+  |hexadecimal-prefix hexadecimal-fractional-constant binary-exponent-part floating-suffixopt
+  |hexadecimal-prefix hexadecimal-digit-sequence binary-exponent-part floating-suffixopt
+  ;
+
+fractional-constant:
+  |digit-sequenceopt "." digit-sequence
+  |digit-sequence "."
+  ;
+
+digit-sequenceopt:
+  |
+  |digit-sequence
+  ;
+
+exponent-part:
+  |"e" signopt digit-sequence
+  |"E" signopt digit-sequence
+  ;
+
+signeopt:
+  |
+  |sign
+  ;
+
+sign:
+  |"+"
+  |"-"
+  ;
+
+digit-sequence:
+  |digit
+  |digit-sequence digit
+  ;
