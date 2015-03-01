@@ -1,6 +1,6 @@
 #Dūce
 - Old English for diver/duck.
-- A basic Ocaml coded static analyzer for C coders. It is meant to be used as a
+- A basic Ocaml coded static analyzer for C99 coders. It is meant to be used as a
   companion in the debugging process, not as a debugger itself.
 
 
@@ -22,6 +22,7 @@ If you want to compile it, you will need 'ocamlopt' and 'make'.
 - `make` will get you the **duce** binary file
 - `make check` will make and run tests
 
+In both case you will need menhir. It is available via OPAM.
 
 ##Goal
 I am doing this project in order to improve my OCaml skills, learn more about C
