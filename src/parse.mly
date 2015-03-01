@@ -1,21 +1,59 @@
 (* tokens to add *)
-%token COLON
-%token COMMA
-%token DOT
+%token AND          "&&"
+%token ARRAY        "array"
+%token ASSIGN       "="
+%token BIAND        "&"
+%token BIOR         "|"
+%token BREAK        "break"
+%token STRUCT       "struct"
+%token COLON        ":"
+%token COMMA        ","
+%token DIVIDE       "/"
+%token DO           "do"
+%token DOT          "."
+%token ELSE         "else"
+%token EQ           "=="
+%token FOR          "for"
+%token GE           ">="
+%token GT           ">"
+%token IF           "if"
+%token INCLUDE       "include"
+%token LBRACE       "{"
+%token LBRACK       "["
+%token LE           "<="
+%token LET          "let"
+%token LPAREN       "("
+%token LT           "<"
+%token MINUS        "-"
+%token NE           "!="
+%token NULL         "NULL"
+%token OF           "of"
+%token OR           "||"
+%token PLUS         "+"
+%token RBRACE       "}"
+%token RBRACK       "]"
+%token RPAREN       ")"
+%token SEMI         ";"
+%token THEN         "then"
+%token TIMES        "*"
+%token TO           "to"
+%token WHILE        "while"
 %token EOF
-%token IF
-%token LEFT_BRACE
-%token LEFT_BRACK
-%token LEFT_PAREN
-%token FALSE
-%token NULL
-%token RIGHT_BRACE
-%token RIGHT_BRACK
-%token RIGHT_PAREN
-%token SEMI_COLON
-%token TRUE
+
+(* Priorities/associativities *)
+
+%nonassoc DO THEN OF
+%nonassoc ELSE
+%left OR AND
+%nonassoc GE GT LE LT EQ NE ASSIGN
+%left PLUS MINUS
+%left TIMES DIVIDE
+
+
 (*determine the start point as in the example:
  %start <Jsone.value option> prog*)
+
+%start program
 
 %%
 
