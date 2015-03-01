@@ -1,5 +1,19 @@
 (* tokens to add *)
-
+%token COLON
+%token COMMA
+%token DOT
+%token EOF
+%token IF
+%token LEFT_BRACE
+%token LEFT_BRACK
+%token LEFT_PAREN
+%token FALSE
+%token NULL
+%token RIGHT_BRACE
+%token RIGHT_BRACK
+%token RIGHT_PAREN
+%token SEMI_COLON
+%token TRUE
 (*determine the start point as in the example:
  %start <Jsone.value option> prog*)
 
