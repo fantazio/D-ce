@@ -263,7 +263,7 @@ c-char-sequence:
   ;
 
 c-char:
-  |[!'\'''\\''\n']
+  |[!'\'''\\''\n']{1}
   |escape-sequence
   ;
 
@@ -297,4 +297,103 @@ octal-escape-sequence:
 hexadecimal-escape-sequence:
   |"\\x" hexadecimal-digit
   |hexadecimal-escape-sequence hexadecimal-digit
+  ;
+
+string-literal:
+  |"\"" s-char-sequenceopt "\""
+  |"L\"" s-char-sequenceopt "\""
+  ;
+
+s-char-sequenceopt:
+  |
+  |s-char-sequence
+  ;
+
+s-char-sequence:
+  |s-char
+  |s-char-sequence s-char;
+
+s-char:
+ |[!'"''\\''\n']{1}
+ |escape-sequence
+ ;
+
+punctuator:
+  |"["
+  |"]"
+  |"("
+  |")"
+  |"{"
+  |"}"
+  |"."
+  |"->"
+  |"++"
+  |"--"
+  |"&"
+  |"*"
+  |"+"
+  |"-"
+  |"~"
+  |"!"
+  |"/"
+  |"%"
+  |"<<"
+  |">>"
+  |"<"
+  |">"
+  |"<="
+  |">="
+  |"=="
+  |"!="
+  |"^"
+  |"|"
+  |"&&"
+  |"||"
+  |"?"
+  |":"
+  |";"
+  |"..."
+  |"="
+  |"*="
+  |"/="
+  |"%="
+  |"+="
+  |"-="
+  |"<<="
+  |">>="
+  |"&="
+  |"^="
+  |"|="
+  |","
+  |"#"
+  |"##"
+  |"<:"
+  |":>"
+  |"<%"
+  |"%>"
+  |"%:"
+  |"%:%:"
+  ;
+
+header-name:
+  |"<" h-char-sequence ">"
+  |"\"" q-char-sequence "\""
+  ;
+
+h-char-sequence:
+  |h-char
+  |h-char-sequence h-char
+  ;
+
+h-char:
+  |[!'\n''>']{1}
+  ;
+
+q-char-sequence:
+  |q-char
+  |q-char-sequence q-char
+  ;
+
+q-char:
+  |[!'\n''"']{1}
   ;
