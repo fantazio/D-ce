@@ -18,7 +18,7 @@ doing something wrong at some places and point it to you.
 As it is coded in OCaml, you can use the 'ocaml' interpreter.
 
 If you want to compile it, you will need 'ocamlopt' and 'make'.
-- `make` will get you the **dūce** binary file
+- `make` will get you the **duce** binary file
 - `make check` will make and run tests
 
 
