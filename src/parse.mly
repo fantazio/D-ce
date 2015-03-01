@@ -1,43 +1,43 @@
 (* tokens to add *)
-%token AND          "&&"
-%token ARRAY        "array"
-%token ASSIGN       "="
-%token BIAND        "&"
-%token BIOR         "|"
-%token BREAK        "break"
-%token STRUCT       "struct"
-%token COLON        ":"
-%token COMMA        ","
-%token DIVIDE       "/"
-%token DO           "do"
-%token DOT          "."
-%token ELSE         "else"
-%token EQ           "=="
-%token FOR          "for"
-%token GE           ">="
-%token GT           ">"
-%token IF           "if"
-%token INCLUDE       "include"
-%token LBRACE       "{"
-%token LBRACK       "["
-%token LE           "<="
-%token LET          "let"
-%token LPAREN       "("
-%token LT           "<"
-%token MINUS        "-"
-%token NE           "!="
-%token NULL         "NULL"
-%token OF           "of"
-%token OR           "||"
-%token PLUS         "+"
-%token RBRACE       "}"
-%token RBRACK       "]"
-%token RPAREN       ")"
-%token SEMI         ";"
-%token THEN         "then"
-%token TIMES        "*"
-%token TO           "to"
-%token WHILE        "while"
+%token AND
+%token ARRAY
+%token ASSIGN
+%token BIAND
+%token BIOR
+%token BREAK
+%token STRUCT
+%token COLON
+%token COMMA
+%token DIVIDE
+%token DO
+%token DOT
+%token ELSE
+%token EQ
+%token FOR
+%token GE
+%token GT
+%token IF
+%token INCLUDE
+%token LBRACE
+%token LBRACK
+%token LE
+%token LET
+%token LPAREN
+%token LT
+%token MINUS
+%token NE
+%token NULL
+%token OF
+%token OR
+%token PLUS
+%token RBRACE
+%token RBRACK
+%token RPAREN
+%token SEMI
+%token THEN
+%token TIMES
+%token TO
+%token WHILE
 %token EOF
 
 (* Priorities/associativities *)
