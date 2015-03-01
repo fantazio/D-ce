@@ -1,6 +1,8 @@
 (* tokens to add *)
 
-%start <Jsone.value option> prog
+(*determine the start point as in the example:
+ %start <Jsone.value option> prog*)
+
 %%
 
 token:
@@ -71,16 +73,16 @@ identifier-nondigit:
   ;
 
 nondigit: 
-  |[_a-zA-Z]
+  |['_''a'-'z''A'-'Z']
   ;
 
 digit:
-  |[0-9]
+  |['0'-'9']
   ;
 
 universal-character-name: 
-  |\\u hex-quad
-  |\\U hex-quad hex-quad
+  |"\\u" hex-quad
+  |"\\U" hex-quad hex-quad
   ;
 
 hex-quad:
@@ -126,15 +128,15 @@ hexadecimal-prefix:
   ;
 
 nonzero-digit:
-  |[1-9]
+  |['1'-'9']
   ;
 
 octal-digit:
-  |[0-7]
+  |['0'-'7']
   ;
 
 hexadecimal-digit:
-  |[0-9a-fA-F]
+  |['0'-'9''a'-'f''A'-'F']
   ;
 
 integer-suffix:
@@ -222,4 +224,77 @@ sign:
 digit-sequence:
   |digit
   |digit-sequence digit
+  ;
+
+hexadecimal-fractional-constant:
+  |hexadecimal-digit-sequenceopt "." hexadecimal-digit-sequence
+  |hexadecimal-digit-sequence "."
+  ;
+
+binary-exponent-part:
+  |"p" signopt digit-sequence
+  |"P" signopt digit-sequence
+  ;
+
+hexadecimal-digit-sequence:
+  |hexadecimal-digit
+  |hexadecimal-digit-sequence hexadecimal-digit
+  ;
+
+floating-suffix:
+  |"f"
+  |"l"
+  |"F"
+  |"L"
+  ;
+
+enumeration-constant:
+  |identifier
+  ;
+
+character-constant:
+  |"'" c-char-sequence "'"
+  |"L'" c-char-sequence "'"
+  ;
+
+c-char-sequence:
+  |c-char
+  |c-char-sequence c-char
+  ;
+
+c-char:
+  |[!'\'''\\''\n']
+  |escape-sequence
+  ;
+
+escape-sequence:
+  |simple-escape-sequence
+  |octal-escape-sequence
+  |hexadecimal-escape-sequence
+  |universal-character-name
+  ;
+
+simple-escape-sequence:
+  |"\\'"
+  |"\\\""
+  |"\\?"
+  |"\\\\"
+  |"\\a"
+  |"\\b"
+  |"\\f"
+  |"\\n"
+  |"\\r"
+  |"\\t"
+  |"\\v"
+  ;
+
+octal-escape-sequence:
+  |"\\" octal-digit
+  |"\\" octal-digit octal-digit
+  |"\\" octal-digit octal-digit octal-digit
+  ;
+
+hexadecimal-escape-sequence:
+  |"\\x" hexadecimal-digit
+  |hexadecimal-escape-sequence hexadecimal-digit
   ;
