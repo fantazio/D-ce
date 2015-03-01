@@ -87,3 +87,54 @@ hex-quad:
   |hexadecimal-digit hexadecimal-digit
   |hexadecimal-digit hexadecimal-digit
   ;
+
+constant:
+  |integer-constant
+  |floating-constant
+  |enumeration-constant
+  |character-constant
+  ;
+integersuffixopt:
+|
+|integer-suffix
+;
+
+integer-constant:
+  |decimal-constant integer-suffixopt
+  |octal-constant integer-suffixopt
+  |hexadecimal-constant integer-suffixopt
+  ;
+
+decimal-constant:
+  |nonzero-digit
+  |decimal-constant digit
+  ;
+
+octal-constant:
+  |"0"
+  |octal-constant octal-digit
+  ;
+
+hexadecimal-constant:
+  |hexadecimal-prefix hexadecimal-digit
+  |hexadecimal-constant hexadecimal-digit
+  ;
+
+hexadecimal-prefix:
+  |"0x"
+  |"0X"
+  ;
+
+nonzero-digit:
+  |[1-9]
+  ;
+
+octal-digit:
+  |[0-7]
+  ;
+
+hexadecimal-digit:
+  |[0-9a-fA-F]
+  ;
+
+
