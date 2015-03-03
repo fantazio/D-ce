@@ -571,3 +571,31 @@ conditional-expression:
   |logical-OR-expression
   |logical-OR-expression '?' expression ':' conditional-expression
   ;
+
+assignment-expression:
+  |conditional-expression
+  |unary-expression assignment-operator assignment-expression
+  ;
+
+assignment-operator:
+  |'='
+  |"*="
+  |"/="
+  |"%="
+  |"+="
+  |"-="
+  |"<<="
+  |">>="
+  |"&="
+  |"^="
+  |"|="
+  ;
+
+expression:
+  |assignment-expression
+  |expression ',' assignment-expression
+  ;
+
+constant-expression:
+  |conditional-expression
+  ;
