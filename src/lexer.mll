@@ -37,8 +37,8 @@ rule read =
   | ']'      { RBRACK }
   | ':'      { COLON }
   | ','      { COMMA }
-  | _ { raise (SyntaxError ("Unexpected char: " ^ Lexing.lexeme lexbuf)) }
   | eof      { EOF }
+  | _ { raise (SyntaxError ("Unexpected char: " ^ Lexing.lexeme lexbuf)) }
 
 and read_string buf =
   parse

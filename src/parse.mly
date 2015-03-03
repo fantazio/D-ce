@@ -64,6 +64,7 @@ token:
   |string-literal
   |punctuator
   ;
+
 preprocessing-token:
   |header-name
   |identifier
@@ -449,3 +450,17 @@ q-char-sequence:
 q-char:
   |[!'\n''"']{1}
   ;
+
+pp-number:
+  |digit
+  |'.' digit
+  |pp-number digit
+  |pp-number identifier-nondigit
+  |pp-number 'e' sign
+  |pp-number 'E' sign
+  |pp-number 'p' sign
+  |pp-number 'P' sign
+  |pp-number '.'
+  ;
+
+
