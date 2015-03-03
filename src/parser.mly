@@ -31,6 +31,7 @@
 %token LOGOR (* || *)
 %token LOGNOT (* ! *)
 %token LPAREN (* ( *)
+%token LS (* << *)
 %token LSASSIGN (* <<= *)
 %token LT (* < *)
 %token MINASSIGN (* -= *)
@@ -48,6 +49,7 @@
 %token RBRACE (* } *)
 %token RBRACK (* ] *)
 %token RPAREN (* ) *)
+%token RS (* >> *)
 %token RSASSIGN (* >>= *)
 %token SEMI (* ; *)
 %token THEN
@@ -69,7 +71,7 @@
 
 
 (*determine the start point as in the example:
- %start <Jsone.value option> prog*)
+ %start <Json.value option> prog*)
 
 %start <None> program
 
