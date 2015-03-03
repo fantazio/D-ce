@@ -463,4 +463,67 @@ pp-number:
   |pp-number '.'
   ;
 
+primary-expression:
+  |identifier
+  |constant string-literal
+  |'(' expression ')'
+  ;
 
+postfix-expression:
+  |primary-expression
+  |postfix-expression '[' expression ']'
+  |postfix-expression '(' argument-expression-listopt ')'
+  |postfix-expression '.' identifier
+  |postfix-expression "->" identifier
+  |postfix-expression "++"
+  |postfix-expression "--"
+  |'(' type-name ')' '{' initializer-list '}'
+  |'(' type-name ')' '{' initializer-list ',' '}'
+  ;
+
+argument-expression-list:
+  |assignment-expression
+  |argument-expression-list ',' assignment-expression
+  ;
+
+unary-expression:
+  |postfix-expression
+  |"++" unary-expression
+  |"--" unary-expression
+  |unary-operator cast-expression
+  |"sizeof" unary-expression
+  |"sizeof" '(' type-name ')'
+  ;
+
+unary-operator:
+  |'&'
+  |'*'
+  |'+'
+  |'-'
+  |'~'
+  |'!'
+  ;
+
+cast-expression:
+  |unary-expression
+  |'(' type-name ')' cast-expression
+  ;
+
+multiplicative-expression:
+  |cast-expression
+  |multiplicative-expression '*' cast-expression
+  |multiplicative-expression '/' cast-expression
+  |multiplicative-expression '%' cast-expression
+  ;
+
+additive-expression:
+  |multiplicative-expression
+  |additive-expression '+' multiplicative-expression
+  |additive-expression '-' multiplicative-expression
+  ;
+
+shift-expression:
+  |additive-expression
+  |shift-expression "<<" additive-expression
+  |shift-expression ">>" additive-expression
+  ;
