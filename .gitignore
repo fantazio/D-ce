@@ -1,1 +1,3 @@
 **.swp
+src/parser.*
+!src/parser.mly
