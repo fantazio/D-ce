@@ -1,5 +1,7 @@
 (* tokens to add *)
 %token <(string, string, string)> VAR (* (type, name, val) *)
+%token ADDASSIGN (* += *)
+%token ANDASSIGN (* &= *)
 %token AND (* && *)
 %token ARRAY
 %token ASSIGN (* = *)
@@ -9,7 +11,7 @@
 %token STRUCT
 %token COLON (* : *)
 %token COMMA (* , *)
-%token DEQ  (* -= *)
+%token DIVASSIGN  (* -= *)
 %token DEC (* -- *)
 %token DIVIDE (* / *)
 %token DO
@@ -27,24 +29,30 @@
 %token LE (* <= *)
 %token LET
 %token LPAREN (* ( *)
+%token LSASSIGN (* <<= *)
 %token LT (* < *)
-%token MEQ (* -= *)
+%token MINASSIGN (* -= *)
+%token MODASSIGN (* -= *)
 %token MINUS (* - *)
+%token MOD (* % *)
+%token MULASSIGN (* *= *)
 %token NE (* != *)
 %token NULL
 %token OF
 %token OR (* || *)
-%token PEQ (* += *)
+%token ORASSIGN (* |= *)
 %token PLUS (* + *)
 %token RBRACE (* } *)
 %token RBRACK (* ] *)
 %token RPAREN (* ) *)
+%token RSASSIGN (* >>= *)
 %token SEMI (* ; *)
-%token TEQ (* *= *)
 %token THEN
 %token TIMES (* * *)
 %token TO
 %token WHILE
+%token XOR (* ^ *)
+%token XORASSIGN (* ^= *)
 %token EOF
 
 (* Priorities/associativities *)
