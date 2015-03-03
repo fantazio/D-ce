@@ -527,3 +527,42 @@ shift-expression:
   |shift-expression "<<" additive-expression
   |shift-expression ">>" additive-expression
   ;
+
+relational-expression:
+  |shift-expression
+  |relational-expression '<' shift-expression
+  |relational-expression '>' shift-expression
+  |relational-expression "<=" shift-expression
+  |relational-expression ">=" shift-expression
+  ;
+
+equality-expression:
+  |relational-expression
+  |equality-expression "==" relational-expression
+  |equality-expression "!=" relational-expression
+  ;
+
+AND-expression:
+  |equality-expression
+  |AND-expression '&' equality-expression
+  ;
+
+exclusive-OR-expression:
+  |equality-expression
+  |exclusive-OR-expression '^' AND-expression
+  ;
+
+inclusive-OR-expression:
+  |exclusive-OR-expression
+  |inclusive-OR-expression '|' exclusive-OR-expression
+  ;
+
+logical-AND-expression:
+  |inclusive-OR-expression
+  |logical-AND-expression "&&" inclusive-OR-expression
+  ;
+
+logical-OR-expression:
+  |logical-AND-expression
+  |logical-OR-expression "||" logical-AND-expression
+  ;
