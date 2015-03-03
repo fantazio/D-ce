@@ -566,3 +566,8 @@ logical-OR-expression:
   |logical-AND-expression
   |logical-OR-expression "||" logical-AND-expression
   ;
+
+conditional-expression:
+  |logical-OR-expression
+  |logical-OR-expression '?' expression ':' conditional-expression
+  ;
