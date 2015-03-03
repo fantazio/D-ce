@@ -71,6 +71,10 @@
 (*determine the start point as in the example:
  %start <Jsone.value option> prog*)
 
-%start (* program *)
+%start <None> program
 
 %%
+
+program:
+  |EOF { None }
+  ;
