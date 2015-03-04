@@ -81,7 +81,7 @@ program:
   |EOF { None }
   ;
 
-(*
+
 token:
   |keyword
   |identifier
@@ -100,7 +100,7 @@ preprocessing_token:
   ;
 
 keyword:
-  |"auto"
+  |(*"auto"
   |"enum"
   |"restrict"
   |"break"
@@ -136,7 +136,7 @@ keyword:
   |"while"
   |"_Bool"
   |"_Complex"
-  |"_Imaginary"
+  |"_Imaginary" *)
   ;
 
 identifier:
@@ -147,25 +147,25 @@ identifier:
 
 identifier_nondigit:
   |nondigit
-  |universal_character-name
+  |universal_character_name
   ;
 
 nondigit: 
-  |['_''a'-'z''A'-'Z']
+  |(* ['_''a'-'z''A'-'Z'] *)
   ;
 
 digit:
-  |['0'-'9']
+  |(*['0'-'9']*)
   ;
 
-universal_character-name: 
-  |"\\u" hex-quad
-  |"\\U" hex-quad hex-quad
+universal_character_name: 
+  |(* "\\u" hex-quad
+  |"\\U" hex-quad hex-quad *)
   ;
 
 hex-quad:
-  |hexadecimal-digit hexadecimal-digit
-  |hexadecimal-digit hexadecimal-digit
+  |hexadecimal_digit hexadecimal_digit
+  |hexadecimal_digit hexadecimal_digit
   ;
 
 constant:
@@ -186,35 +186,35 @@ integer_constant:
   ;
 
 decimal_constant:
-  |nonzero-digit
+  |nonzero_digit
   |decimal_constant digit
   ;
 
 octal_constant:
-  |"0"
-  |octal_constant octal-digit
+  |(* "0" *)
+  |octal_constant octal_digit
   ;
 
 hexadecimal_constant:
-  |hexadecimal-prefix hexadecimal-digit
-  |hexadecimal_constant hexadecimal-digit
+  |hexadecimal-prefix hexadecimal_digit
+  |hexadecimal_constant hexadecimal_digit
   ;
 
 hexadecimal-prefix:
-  |"0x"
-  |"0X"
+  |(* "0x"
+  |"0X" *)
   ;
 
-nonzero-digit:
-  |['1'-'9']
+nonzero_digit:
+  |(* ['1'-'9'] *)
   ;
 
-octal-digit:
-  |['0'-'7']
+octal_digit:
+  |(* ['0'-'7'] *)
   ;
 
-hexadecimal-digit:
-  |['0'-'9''a'-'f''A'-'F']
+hexadecimal_digit:
+  |(* ['0'-'9''a'-'f''A'-'F'] *)
   ;
 
 integer_suffix:
@@ -235,18 +235,18 @@ unsigned_suffixopt:
   ;
 
 unsigned_suffix:
-  |"u"
-  |"U"
+  |(* "u"
+  |"U" *)
   ;
 
 long_suffix:
-  |"l"
-  |"L"
+  |(* "l"
+  |"L" *)
   ;
 
 long_long_suffix:
-  |"ll"
-  |"LL"
+  |(* "ll"
+  |"LL" *)
   ;
 
 floating_constant:
@@ -256,7 +256,7 @@ floating_constant:
 
 decimal-floating_constant:
   |fractional_constant exponent-partopt floating_suffixopt
-  |digit-sequence exponent-part floating_suffixopt
+  |digit_sequence exponent-part floating_suffixopt
   ;
 
 exponent-partopt:
@@ -271,22 +271,22 @@ floating_suffixopt:
 
 hexadecimal-floating_constant:
   |hexadecimal-prefix hexadecimal-fractional_constant binary-exponent-part floating_suffixopt
-  |hexadecimal-prefix hexadecimal-digit-sequence binary-exponent-part floating_suffixopt
+  |hexadecimal-prefix hexadecimal_digit_sequence binary-exponent-part floating_suffixopt
   ;
 
 fractional_constant:
-  |digit-sequenceopt "." digit-sequence
-  |digit-sequence "."
+  |(* digit_sequenceopt "." digit_sequence
+  |digit_sequence "." *)
   ;
 
-digit-sequenceopt:
+digit_sequenceopt:
   |
-  |digit-sequence
+  |digit_sequence
   ;
 
 exponent-part:
-  |"e" signopt digit-sequence
-  |"E" signopt digit-sequence
+  |(* "e" signopt digit_sequence
+  |"E" signopt digit_sequence *)
   ;
 
 signeopt:
@@ -295,35 +295,35 @@ signeopt:
   ;
 
 sign:
-  |"+"
-  |"-"
+  |(* "+"
+  |"-" *)
   ;
 
-digit-sequence:
+digit_sequence:
   |digit
-  |digit-sequence digit
+  |digit_sequence digit
   ;
 
 hexadecimal-fractional_constant:
-  |hexadecimal-digit-sequenceopt "." hexadecimal-digit-sequence
-  |hexadecimal-digit-sequence "."
+  |(* hexadecimal_digit_sequenceopt "." hexadecimal_digit_sequence
+  |hexadecimal_digit_sequence "." *)
   ;
 
 binary-exponent-part:
-  |"p" signopt digit-sequence
-  |"P" signopt digit-sequence
+  |(* "p" signopt digit_sequence
+  |"P" signopt digit_sequence *)
   ;
 
-hexadecimal-digit-sequence:
-  |hexadecimal-digit
-  |hexadecimal-digit-sequence hexadecimal-digit
+hexadecimal_digit_sequence:
+  |hexadecimal_digit
+  |hexadecimal_digit_sequence hexadecimal_digit
   ;
 
 floating_suffix:
-  |"f"
+  |(* "f"
   |"l"
   |"F"
-  |"L"
+  |"L" *)
   ;
 
 enumeration_constant:
@@ -331,8 +331,8 @@ enumeration_constant:
   ;
 
 character_constant:
-  |"'" c_char_sequence "'"
-  |"L'" c_char_sequence "'"
+  |(* "'" c_char_sequence "'"
+  |"L'" c_char_sequence "'" *)
   ;
 
 c_char_sequence:
@@ -341,7 +341,7 @@ c_char_sequence:
   ;
 
 c_char:
-  |[!'\'''\\''\n']{1}
+  |(* [!'\'''\\''\n']{1} *)
   |escape-sequence
   ;
 
@@ -349,11 +349,11 @@ escape-sequence:
   |simple-escape-sequence
   |octal-escape-sequence
   |hexadecimal-escape-sequence
-  |universal_character-name
+  |universal_character_name
   ;
 
 simple-escape-sequence:
-  |"\\'"
+  |(* "\\'"
   |"\\\""
   |"\\?"
   |"\\\\"
@@ -363,23 +363,23 @@ simple-escape-sequence:
   |"\\n"
   |"\\r"
   |"\\t"
-  |"\\v"
+  |"\\v" *)
   ;
 
 octal-escape-sequence:
-  |"\\" octal-digit
-  |"\\" octal-digit octal-digit
-  |"\\" octal-digit octal-digit octal-digit
+  |(* "\\" octal_digit
+  |"\\" octal_digit octal_digit
+  |"\\" octal_digit octal_digit octal_digit *)
   ;
 
 hexadecimal-escape-sequence:
-  |"\\x" hexadecimal-digit
-  |hexadecimal-escape-sequence hexadecimal-digit
+  |(* "\\x" hexadecimal_digit *)
+  |hexadecimal-escape-sequence hexadecimal_digit
   ;
 
 string_literal:
-  |"\"" s_char_sequenceopt "\""
-  |"L\"" s_char_sequenceopt "\""
+  |(* "\"" s_char_sequenceopt "\""
+  |"L\"" s_char_sequenceopt "\"" *)
   ;
 
 s_char_sequenceopt:
@@ -392,12 +392,12 @@ s_char_sequence:
   |s_char_sequence s_char;
 
 s_char:
- |[!'"''\\''\n']{1}
+ |(* [!'"''\\''\n']{1} *)
  |escape-sequence
  ;
 
 punctuator:
-  |"["
+  |(* "["
   |"]"
   |"("
   |")"
@@ -450,12 +450,12 @@ punctuator:
   |"<%"
   |"%>"
   |"%:"
-  |"%:%:"
+  |"%:%:" *)
   ;
 
 header_name:
-  |"<" h_char_sequence ">"
-  |"\"" q_char_sequence "\""
+  |(* "<" h_char_sequence ">"
+  |"\"" q_char_sequence "\"" *)
   ;
 
 h_char_sequence:
@@ -464,7 +464,7 @@ h_char_sequence:
   ;
 
 h_char:
-  |[!'\n''>']{1}
+  |(* [!'\n''>']{1} *)
   ;
 
 q_char_sequence:
@@ -473,128 +473,128 @@ q_char_sequence:
   ;
 
 q_char:
-  |[!'\n''"']{1}
+  |(* [!'\n''"']{1} *)
   ;
 
 pp_number:
   |digit
-  |'.' digit
+  |(* '.' digit *)
   |pp_number digit
   |pp_number identifier_nondigit
-  |pp_number 'e' sign
+  |(* pp_number 'e' sign
   |pp_number 'E' sign
   |pp_number 'p' sign
   |pp_number 'P' sign
-  |pp_number '.'
+  |pp_number '.' *)
   ;
 
 primary_expression:
   |identifier
   |constant string_literal
-  |'(' expression ')'
+  |(* '(' expression ')' *)
   ;
 
 postfix_expression:
   |primary_expression
-  |postfix_expression '[' expression ']'
-  |postfix_expression '(' argument_expression-listopt ')'
+  |(* postfix_expression '[' expression ']'
+  |postfix_expression '(' argument_expression_listopt ')'
   |postfix_expression '.' identifier
   |postfix_expression "->" identifier
   |postfix_expression "++"
   |postfix_expression "--"
-  |'(' type-name ')' '{' initializer-list '}'
-  |'(' type-name ')' '{' initializer-list ',' '}'
+  |'(' type_name ')' '{' initializer_list '}'
+  |'(' type_name ')' '{' initializer_list ',' '}' *)
   ;
 
-argument_expression-list:
+argument_expression_list:
   |assignment_expression
-  |argument_expression-list ',' assignment_expression
+  |(* argument_expression_list ',' assignment_expression *)
   ;
 
 unary_expression:
   |postfix_expression
-  |"++" unary_expression
+  |(* "++" unary_expression
   |"--" unary_expression
   |unary-operator cast_expression
   |"sizeof" unary_expression
-  |"sizeof" '(' type-name ')'
+  |"sizeof" '(' type_name ')' *)
   ;
 
 unary-operator:
-  |'&'
+  |(* '&'
   |'*'
   |'+'
   |'-'
   |'~'
-  |'!'
+  |'!' *)
   ;
 
 cast_expression:
   |unary_expression
-  |'(' type-name ')' cast_expression
+  |(* '(' type_name ')' cast_expression *)
   ;
 
 multiplicative_expression:
   |cast_expression
-  |multiplicative_expression '*' cast_expression
+  |(* multiplicative_expression '*' cast_expression
   |multiplicative_expression '/' cast_expression
-  |multiplicative_expression '%' cast_expression
+  |multiplicative_expression '%' cast_expression *)
   ;
 
 additive_expression:
   |multiplicative_expression
-  |additive_expression '+' multiplicative_expression
-  |additive_expression '-' multiplicative_expression
+  |(* additive_expression '+' multiplicative_expression
+  |additive_expression '-' multiplicative_expression *)
   ;
 
 shift_expression:
   |additive_expression
-  |shift_expression "<<" additive_expression
-  |shift_expression ">>" additive_expression
+  |(* shift_expression "<<" additive_expression
+  |shift_expression ">>" additive_expression *)
   ;
 
 relational_expression:
   |shift_expression
-  |relational_expression '<' shift_expression
+  |(* relational_expression '<' shift_expression
   |relational_expression '>' shift_expression
   |relational_expression "<=" shift_expression
-  |relational_expression ">=" shift_expression
+  |relational_expression ">=" shift_expression *)
   ;
 
 equality_expression:
   |relational_expression
-  |equality_expression "==" relational_expression
-  |equality_expression "!=" relational_expression
+  |(* equality_expression "==" relational_expression
+  |equality_expression "!=" relational_expression *)
   ;
 
 AND_expression:
   |equality_expression
-  |AND_expression '&' equality_expression
+  |(* AND_expression '&' equality_expression *)
   ;
 
 exclusive_OR_expression:
   |equality_expression
-  |exclusive_OR_expression '^' AND_expression
+  |(* exclusive_OR_expression '^' AND_expression *)
   ;
 
 inclusive_OR_expression:
   |exclusive_OR_expression
-  |inclusive_OR_expression '|' exclusive_OR_expression
+  |(* inclusive_OR_expression '|' exclusive_OR_expression *)
   ;
 
 logical_AND_expression:
   |inclusive_OR_expression
-  |logical_AND_expression "&&" inclusive_OR_expression
+  |(* logical_AND_expression "&&" inclusive_OR_expression *)
   ;
 
 logical_OR_expression:
   |logical_AND_expression
-  |logical_OR_expression "||" logical_AND_expression
+  |(* logical_OR_expression "||" logical_AND_expression *)
   ;
 
 conditional_expression:
   |logical_OR_expression
-  |logical_OR_expression '?' expression ':' conditional_expression
+  |(* logical_OR_expression '?' expression ':' conditional_expression *)
   ;
 
 assignment_expression:
@@ -603,7 +603,7 @@ assignment_expression:
   ;
 
 assignment_operator:
-  |'='
+  |(* '='
   |"*="
   |"/="
   |"%="
@@ -613,15 +613,14 @@ assignment_operator:
   |">>="
   |"&="
   |"^="
-  |"|="
+  |"|=" *)
   ;
 
 expression:
   |assignment_expression
-  |expression ',' assignment_expression
+  |(* expression ',' assignment_expression *)
   ;
 
 constant_expression:
   |conditional_expression
   ;
-*)
