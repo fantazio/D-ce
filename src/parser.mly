@@ -159,11 +159,11 @@ digit:
   ;
 
 universal_character_name: 
-  |(* "\\u" hex-quad
-  |"\\U" hex-quad hex-quad *)
+  |(* "\\u" hex_quad
+  |"\\U" hex_quad hex_quad *)
   ;
 
-hex-quad:
+hex_quad:
   |hexadecimal_digit hexadecimal_digit
   |hexadecimal_digit hexadecimal_digit
   ;
@@ -196,11 +196,11 @@ octal_constant:
   ;
 
 hexadecimal_constant:
-  |hexadecimal-prefix hexadecimal_digit
+  |hexadecimal_prefix hexadecimal_digit
   |hexadecimal_constant hexadecimal_digit
   ;
 
-hexadecimal-prefix:
+hexadecimal_prefix:
   |(* "0x"
   |"0X" *)
   ;
@@ -250,18 +250,18 @@ long_long_suffix:
   ;
 
 floating_constant:
-  |decimal-floating_constant
-  |hexadecimal-floating_constant
+  |decimal_floating_constant
+  |hexadecimal_floating_constant
   ;
 
-decimal-floating_constant:
-  |fractional_constant exponent-partopt floating_suffixopt
-  |digit_sequence exponent-part floating_suffixopt
+decimal_floating_constant:
+  |fractional_constant exponent_partopt floating_suffixopt
+  |digit_sequence exponent_part floating_suffixopt
   ;
 
-exponent-partopt:
+exponent_partopt:
   |
-  |exponent-part
+  |exponent_part
   ;
 
 floating_suffixopt:
@@ -269,9 +269,9 @@ floating_suffixopt:
   |floating_suffix
   ;
 
-hexadecimal-floating_constant:
-  |hexadecimal-prefix hexadecimal-fractional_constant binary-exponent-part floating_suffixopt
-  |hexadecimal-prefix hexadecimal_digit_sequence binary-exponent-part floating_suffixopt
+hexadecimal_floating_constant:
+  |hexadecimal_prefix hexadecimal_fractional_constant binary_exponent_part floating_suffixopt
+  |hexadecimal_prefix hexadecimal_digit_sequence binary_exponent_part floating_suffixopt
   ;
 
 fractional_constant:
@@ -284,7 +284,7 @@ digit_sequenceopt:
   |digit_sequence
   ;
 
-exponent-part:
+exponent_part:
   |(* "e" signopt digit_sequence
   |"E" signopt digit_sequence *)
   ;
@@ -304,12 +304,12 @@ digit_sequence:
   |digit_sequence digit
   ;
 
-hexadecimal-fractional_constant:
+hexadecimal_fractional_constant:
   |(* hexadecimal_digit_sequenceopt "." hexadecimal_digit_sequence
   |hexadecimal_digit_sequence "." *)
   ;
 
-binary-exponent-part:
+binary_exponent_part:
   |(* "p" signopt digit_sequence
   |"P" signopt digit_sequence *)
   ;
@@ -342,17 +342,17 @@ c_char_sequence:
 
 c_char:
   |(* [!'\'''\\''\n']{1} *)
-  |escape-sequence
+  |escape_sequence
   ;
 
-escape-sequence:
-  |simple-escape-sequence
-  |octal-escape-sequence
-  |hexadecimal-escape-sequence
+escape_sequence:
+  |simple_escape_sequence
+  |octal_escape_sequence
+  |hexadecimal_escape_sequence
   |universal_character_name
   ;
 
-simple-escape-sequence:
+simple_escape_sequence:
   |(* "\\'"
   |"\\\""
   |"\\?"
@@ -366,15 +366,15 @@ simple-escape-sequence:
   |"\\v" *)
   ;
 
-octal-escape-sequence:
-  |(* "\\" octal_digit
-  |"\\" octal_digit octal_digit
-  |"\\" octal_digit octal_digit octal_digit *)
+octal_escape_sequence:
+  |(* "\\" *) octal_digit
+  |(* "\\" *) octal_digit octal_digit
+  |(* "\\" *) octal_digit octal_digit octal_digit
   ;
 
-hexadecimal-escape-sequence:
+hexadecimal_escape_sequence:
   |(* "\\x" hexadecimal_digit *)
-  |hexadecimal-escape-sequence hexadecimal_digit
+  |hexadecimal_escape_sequence hexadecimal_digit
   ;
 
 string_literal:
@@ -393,7 +393,7 @@ s_char_sequence:
 
 s_char:
  |(* [!'"''\\''\n']{1} *)
- |escape-sequence
+ |escape_sequence
  ;
 
 punctuator:
