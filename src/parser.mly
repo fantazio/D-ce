@@ -1,5 +1,6 @@
 (* tokens to add *)
-%token <(string, string, string)> VAR (* (type, name, val) *)
+%token <string> KEYWORD (* for not token defined keyword *)
+%token <string> TYPE (* for basics types (int, float, char, double, ...) *)
 %token ADDASSIGN (* += *)
 %token ADDR (* & *)
 %token AND (* & *)
@@ -10,6 +11,7 @@
 %token STRUCT
 %token COLON (* : *)
 %token COMMA (* , *)
+%token CONTINUE
 %token DIVASSIGN  (* -= *)
 %token DEC (* -- *)
 %token DIVIDE (* / *)
@@ -100,43 +102,16 @@ preprocessing_token:
   ;
 
 keyword:
-  |(*"auto"
-  |"enum"
-  |"restrict"
-  |"break"
-  |"extern"
-  |"return"
-  |"case"
-  |"float"
-  |"short"
-  |"char"
-  |"for"
-  |"signed"
-  |"const"
-  |"goto"
-  |"sizeof"
-  |"continue"
-  |"if"
-  |"static"
-  |"default"
-  |"inline"
-  |"struct"
-  |"do"
-  |"int"
-  |"switch"
-  |"double"
-  |"long"
-  |"typedef"
-  |"else"
-  |"register"
-  |"union"
-  |"unsigned"
-  |"void"
-  |"volatile"
-  |"while"
-  |"_Bool"
-  |"_Complex"
-  |"_Imaginary" *)
+  |KEYWORD
+  |TYPE
+  |IF
+  |BREAK
+  |FOR
+  |CONTINUE
+  |IF
+  |DO
+  |ELSE
+  |WHILE
   ;
 
 identifier:

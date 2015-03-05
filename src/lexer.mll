@@ -38,6 +38,43 @@ rule read =
   | ':'      { COLON }
   | ','      { COMMA }
   | eof      { EOF }
+  |"auto"    { KEYWORD (Lexing.lexeme lexbuf) }
+  |"enum"  { KEYWORD (Lexing.lexeme lexbuf) }
+  |"restrict"  { KEYWORD (Lexing.lexeme lexbuf) }
+  |"break"  { BREAK }
+  |"extern"  { KEYWORD (Lexing.lexeme lexbuf) }
+  |"return"  { KEYWORD (Lexing.lexeme lexbuf) }
+  |"case"  { KEYWORD (Lexing.lexeme lexbuf) }
+  |"float"  { TYPE (Lexing.lexeme lexbuf) }
+  |"short"  { TYPE (Lexing.lexeme lexbuf) }
+  |"char"  { TYPE (Lexing.lexeme lexbuf) }
+  |"for"  { FOR }
+  |"signed"  { KEYWORD (Lexing.lexeme lexbuf) }
+  |"const"  { KEYWORD (Lexing.lexeme lexbuf) }
+  |"goto"  { KEYWORD (Lexing.lexeme lexbuf) }
+  |"sizeof"  { KEYWORD (Lexing.lexeme lexbuf) }
+  |"continue"  { CONTINUE }
+  |"if"  { IF }
+  |"static"  { KEYWORD (Lexing.lexeme lexbuf) }
+  |"default"  { KEYWORD (Lexing.lexeme lexbuf) }
+  |"inline"  { KEYWORD (Lexing.lexeme lexbuf) }
+  |"struct"  { KEYWORD (Lexing.lexeme lexbuf) }
+  |"do"  { DO }
+  |"int"  { TYPE (Lexing.lexeme lexbuf) }
+  |"switch"  { KEYWORD (Lexing.lexeme lexbuf) }
+  |"double"  { TYPE (Lexing.lexeme lexbuf) }
+  |"long"  { TYPE (Lexing.lexeme lexbuf) }
+  |"typedef"  { KEYWORD (Lexing.lexeme lexbuf) }
+  |"else"  { ELSE }
+  |"register"  { KEYWORD (Lexing.lexeme lexbuf) }
+  |"union"  { KEYWORD (Lexing.lexeme lexbuf) }
+  |"unsigned"  { TYPE (Lexing.lexeme lexbuf) }
+  |"void"  { TYPE (Lexing.lexeme lexbuf) }
+  |"volatile"  { KEYWORD (Lexing.lexeme lexbuf) }
+  |"while"  { WHILE }
+  |"_Bool"  { KEYWORD (Lexing.lexeme lexbuf) }
+  |"_Complex"  { KEYWORD (Lexing.lexeme lexbuf) }
+  |"_Imaginary"  { KEYWORD (Lexing.lexeme lexbuf) }
   | _ { raise (SyntaxError ("Unexpected char: " ^ Lexing.lexeme lexbuf)) }
 
 and read_string buf =
