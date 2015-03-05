@@ -14,13 +14,21 @@ let next_line lexbuf =
 
 
 (* Abbreviations  *)
-let int = '-'? [0-9]+
-let space = [ \t]+
+let int = '-'? ['0'-'9']+
+let space = [' ' '\t']+
 let eol = "\r\n"|'\n'|'\r'
-let id = [a-zA-Z][a-zA-Z0-9_]*
-let digit = [0-9]
+let id = ['a'-'z' 'A'-'Z']['a'-'z' 'A'-'Z' '0'-'9' '_']*
+let digit = ['0'-'9']
+let nondigit = ['_' 'a'-'z' 'A'-'Z']
+let hexadecimal_digit = [digit 'A'-'F' 'a'-'f']
+(* identifiers *)
+let  id = id_nondigit [id_nondigit digit]*
+and rule id_nondigit = nondigit | universal_character_name
+and rule universal_character_name = '\\' 'u' hex_quad
+and hex_quad = hexadecimal_digit hexadecimal_digit hexadecimal_digit hexadecimal_digit
 
 (* Rules *)
+
 rule read =
   parse
   | space    { read lexbuf }

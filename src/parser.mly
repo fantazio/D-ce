@@ -115,7 +115,8 @@ keyword:
   |WHILE
   ;
 
-identifier:
+(* transfered to lexer ..
+  identifier:
   |identifier_nondigit
   |identifier identifier_nondigit
   |identifier digit
@@ -140,9 +141,8 @@ universal_character_name:
   ;
 
 hex_quad:
-  |hexadecimal_digit hexadecimal_digit
-  |hexadecimal_digit hexadecimal_digit
-  ;
+  |hexadecimal_digit hexadecimal_digit hexadecimal_digit hexadecimal_digit
+  ; *)
 
 constant:
   |integer_constant
@@ -189,9 +189,10 @@ octal_digit:
   |(* ['0'-'7'] *)
   ;
 
-hexadecimal_digit:
+(* Moved to lexer ..
+  hexadecimal_digit:
   |(* ['0'-'9''a'-'f''A'-'F'] *)
-  ;
+  ; *)
 
 integer_suffix:
   |unsigned_suffix long_suffixopt
