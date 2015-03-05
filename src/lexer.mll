@@ -20,6 +20,7 @@ let eol = "\r\n" | '\n' | '\r'
 let id = ['a'-'z' 'A'-'Z']['a'-'z' 'A'-'Z' '0'-'9' '_']*
 let digit = ['0'-'9']
 let nondigit = ['_' 'a'-'z' 'A'-'Z']
+let oct_digit = ['0'-'7']
 let hex_digit = digit | ['A'-'F' 'a'-'f']
 (* identifiers *)
 let id = id_nondigit [id_nondigit digit]*
@@ -31,7 +32,7 @@ let constant = int_const | float_const | enum_const | char_const
 and int_const = dec_const int_suff? | oct_const int_suff? | hex_const int_suff?
 and dec_const = ['1'-'9'] | dec_const digit
 and hex_pref = '0' ['x' 'X']
-and oct_const = '0' | oct_const ['0'-'7']
+and oct_const = '0' | oct_const oct_digit
 and hex_const = hex_pref hex_digit | hex_const hex_digit
 and int_suff = uns_suff (long_suff? | ll_suff) | (long_suff | ll_suff) uns_suff?
 and long_suff = ['l' 'L']
@@ -39,7 +40,24 @@ and uns_suff = ['u' 'U']
 and ll_suff = "ll" | "LL"
 and float_const = dec_float_const | hex_float_const
 and dec_float_const = fract_const exp_part? float_suff? | dig_seq exp_part float_suff?
-and hex_float_const =
+and hex_float_const = hex_pref (hex_frac_const | hex_digit_seq) bin_exp_part float_suff?
+and frac_const = digit_seq? '.' digit_seq | digit_seq '.'
+and exp_part = ['e' 'E'] sign? digit_seq
+and sign = ['-' '+']
+and digit_seq = digit+
+and hex_frac_cont = hex_digit_seq? '.' hex_digit_seq | hex_digit_seq '.'
+and bi_exp_part = ['p' 'P'] sign? digit_seq
+and hex_digit_seq = hex_digit+
+and float_suff = ['l' 'L' 'f' 'F']
+and enum_const = id
+and char_const = ("'" | "L'") c_char_seq "'"
+and c_char_seq = c_char+
+and c_char = esc_seq
+and esc_seq = simple_esc_seq | oct_esc_seq | hex_esc_seq | univ_char_name
+and simple_esc_seq = '\\' ['\'' '"' '?' '\\' 'a' 'b' 'f' 'n' 'r' 't' 'v']
+and oct_esc_seq = '\\' oct_digit oct_digit? oct_digit?
+and hex_esc_seq = "\\x" hex_digit+
+
 (* Rules *)
 
 rule read =
@@ -49,6 +67,7 @@ rule read =
   | int      { INT (int_of_string (Lexing.lexeme lexbuf)) }
   | float    { FLOAT (float_of_string (Lexing.lexeme lexbuf)) }
   | id       { ID (Lexing.lexeme lexbuf) }
+  |constant  { CONSTANT (Lexing.lexemem lexbuf) }
   | "true"   { TRUE }
   | "false"  { FALSE }
   | "null"   { NULL }
