@@ -2,6 +2,7 @@
 %token <string> CONSTANT (* for hardcoded values *)
 %token <string> ID (* self explanatory *)
 %token <string> KEYWORD (* for not token defined keyword *)
+%token <string> STRING (* for hardcoded strings *)
 %token <string> TYPE (* for basics types (int, float, char, double, ...) *)
 %token ADDASSIGN (* += *)
 %token ADDR (* & *)
@@ -131,23 +132,8 @@ sign:
   ;
 
 string_literal:
-  |(* "\"" s_char_sequenceopt "\""
-  |"L\"" s_char_sequenceopt "\"" *)
+  | STRING
   ;
-
-s_char_sequenceopt:
-  |
-  |s_char_sequence
-  ;
-
-s_char_sequence:
-  |s_char
-  |s_char_sequence s_char;
-
-s_char:
- |(* [!'"''\\''\n']{1} *)
- |escape_sequence
- ;
 
 punctuator:
   |(* "["
