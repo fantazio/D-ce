@@ -16,17 +16,30 @@ let next_line lexbuf =
 (* Abbreviations  *)
 let int = '-'? ['0'-'9']+
 let space = [' ' '\t']+
-let eol = "\r\n"|'\n'|'\r'
+let eol = "\r\n" | '\n' | '\r'
 let id = ['a'-'z' 'A'-'Z']['a'-'z' 'A'-'Z' '0'-'9' '_']*
 let digit = ['0'-'9']
 let nondigit = ['_' 'a'-'z' 'A'-'Z']
-let hexadecimal_digit = [digit 'A'-'F' 'a'-'f']
+let hex_digit = digit | ['A'-'F' 'a'-'f']
 (* identifiers *)
-let  id = id_nondigit [id_nondigit digit]*
+let id = id_nondigit [id_nondigit digit]*
 and rule id_nondigit = nondigit | universal_character_name
 and rule universal_character_name = '\\' 'u' hex_quad
-and hex_quad = hexadecimal_digit hexadecimal_digit hexadecimal_digit hexadecimal_digit
-
+and hex_quad = hex_digit hex_digit hex_digit hex_digit
+(* constants *)
+let constant = int_const | float_const | enum_const | char_const
+and int_const = dec_const int_suff? | oct_const int_suff? | hex_const int_suff?
+and dec_const = ['1'-'9'] | dec_const digit
+and hex_pref = '0' ['x' 'X']
+and oct_const = '0' | oct_const ['0'-'7']
+and hex_const = hex_pref hex_digit | hex_const hex_digit
+and int_suff = uns_suff (long_suff? | ll_suff) | (long_suff | ll_suff) uns_suff?
+and long_suff = ['l' 'L']
+and uns_suff = ['u' 'U']
+and ll_suff = "ll" | "LL"
+and float_const = dec_float_const | hex_float_const
+and dec_float_const = fract_const exp_part? float_suff? | dig_seq exp_part float_suff?
+and hex_float_const =
 (* Rules *)
 
 rule read =

@@ -126,8 +126,9 @@ constant:
   |enumeration_constant
   |character_constant
   ;
+
 integersuffixopt:
-|
+| (* empty *)
 |integer_suffix
 ;
 
@@ -164,11 +165,6 @@ nonzero_digit:
 octal_digit:
   |(* ['0'-'7'] *)
   ;
-
-(* Moved to lexer ..
-  hexadecimal_digit:
-  |(* ['0'-'9''a'-'f''A'-'F'] *)
-  ; *)
 
 integer_suffix:
   |unsigned_suffix long_suffixopt
