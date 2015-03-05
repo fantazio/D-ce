@@ -116,34 +116,9 @@ keyword:
   |WHILE
   ;
 
-(* transfered to lexer ..
-  identifier:
-  |identifier_nondigit
-  |identifier identifier_nondigit
-  |identifier digit
+identifier:
+  |ID
   ;
-
-identifier_nondigit:
-  |nondigit
-  |universal_character_name
-  ;
-
-nondigit: 
-  |(* ['_''a'-'z''A'-'Z'] *)
-  ;
-
-digit:
-  |(*['0'-'9']*)
-  ;
-
-universal_character_name: 
-  |(* "\\u" hex_quad
-  |"\\U" hex_quad hex_quad *)
-  ;
-
-hex_quad:
-  |hexadecimal_digit hexadecimal_digit hexadecimal_digit hexadecimal_digit
-  ; *)
 
 constant:
   |integer_constant
@@ -253,12 +228,12 @@ hexadecimal_floating_constant:
   ;
 
 fractional_constant:
-  |(* digit_sequenceopt "." digit_sequence
-  |digit_sequence "." *)
+  |digit_sequenceopt DOT digit_sequence
+  |digit_sequence DOT
   ;
 
 digit_sequenceopt:
-  |
+  | (* empty *)
   |digit_sequence
   ;
 
@@ -268,7 +243,7 @@ exponent_part:
   ;
 
 signeopt:
-  |
+  | (* empty *)
   |sign
   ;
 
@@ -283,8 +258,8 @@ digit_sequence:
   ;
 
 hexadecimal_fractional_constant:
-  |(* hexadecimal_digit_sequenceopt "." hexadecimal_digit_sequence
-  |hexadecimal_digit_sequence "." *)
+  |hexadecimal_digit_sequenceopt DOT hexadecimal_digit_sequence
+  |hexadecimal_digit_sequence DOT
   ;
 
 binary_exponent_part:
@@ -469,7 +444,7 @@ pp_number:
 primary_expression:
   |identifier
   |constant string_literal
-  |(* '(' expression ')' *)
+  |LPAREN expression RPAREN
   ;
 
 postfix_expression:
