@@ -35,6 +35,7 @@ rule read =
   | eol  { next_line lexbuf; read lexbuf }
   | int      { INT (int_of_string (Lexing.lexeme lexbuf)) }
   | float    { FLOAT (float_of_string (Lexing.lexeme lexbuf)) }
+  | id       { ID (Lexing.lexeme lexbuf) }
   | "true"   { TRUE }
   | "false"  { FALSE }
   | "null"   { NULL }

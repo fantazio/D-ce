@@ -1,4 +1,5 @@
 (* tokens to add *)
+%token <string> ID (* self explanatory *)
 %token <string> KEYWORD (* for not token defined keyword *)
 %token <string> TYPE (* for basics types (int, float, char, double, ...) *)
 %token ADDASSIGN (* += *)
