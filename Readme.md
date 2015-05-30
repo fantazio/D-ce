@@ -36,7 +36,7 @@ The C99 grammar is [here](http://www.open-std.org/JTC1/SC22/WG14/www/docs/n1124.
 ##How do I contribute?
 As the goal for me is to learn things, I would prefer to do the entire project
 by myself. However, having someone participating can be instructive, this is
-why some oher people could sometime join in.
+why some other people could sometimes join in.
 
 
 ##Authors
@@ -44,6 +44,6 @@ why some oher people could sometime join in.
 
 [fantazio on wordpress](https://corentindsz.wordpress.com)
 
-[fantazio on tumblr](corentindsz.tumblr.com)
+[fantazio on tumblr](http://corentindsz.tumblr.com)
 
 [fantazio on twitter](https://twitter.com/CorentinDsz)
