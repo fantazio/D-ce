@@ -259,7 +259,7 @@ unary_expression:
   |"sizeof" '(' type_name ')' *)
   ;
 
-unary-operator:
+unary_operator:
   |(* '&'
   |'*'
   |'+'
